@@ -11,11 +11,11 @@ services:
     volumes:
       - ./docker/postgres/db:/var/lib/postgresql/data
     ports:
-      - "54325:5432"
+      - ${POSTGRES_DB}:5432
     networks:
-      - my_message
+      - notification_telegram
 volumes:
   postgres_data:
 networks:
-  my_message:
+  notification_telegram:
     driver: bridge
