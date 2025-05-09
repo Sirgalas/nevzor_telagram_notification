@@ -1,0 +1,21 @@
+services:
+  postgres:
+    build:
+      context: docker
+      dockerfile: postgres/postgres.dockerfile
+    environment:
+      POSTGRES_VERSION: ${POSTGRES_VERSION}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - ./docker/postgres/db:/var/lib/postgresql/data
+    ports:
+      - "54325:5432"
+    networks:
+      - my_message
+volumes:
+  postgres_data:
+networks:
+  my_message:
+    driver: bridge
