@@ -11,7 +11,7 @@ services:
     volumes:
       - ./docker/postgres/db:/var/lib/postgresql/data
     ports:
-      - ${POSTGRES_DB}:5432
+      - ${POSTGRES_PORT}:5432
     networks:
       - notification_telegram
 volumes:
