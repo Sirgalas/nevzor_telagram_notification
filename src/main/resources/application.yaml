@@ -1,0 +1,22 @@
+spring:
+  liquibase:
+    enabled: true
+    change-log: classpath:/db/changelog/db/db.changelog-master.xml
+  datasource:
+    url:
+    username:
+    password:
+    driver-class-name:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+  logging:
+    level:
+      sql: info
+      liquibase: DEBUG
+      org.hibernate.SQL: DEBUG
+bot:
+  token:
+  name:
+  username:
