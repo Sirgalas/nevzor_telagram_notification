@@ -1,10 +1,10 @@
-package ru.sergalas.notification.entity;
+package ru.sergalas.notification.entity.notification.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import ru.sergalas.notification.entity.contract.AbstractEntity;
-import ru.sergalas.notification.entity.enums.NotificationStatus;
+import ru.sergalas.notification.entity.user.entity.User;
+import ru.sergalas.notification.enums.NotificationStatus;
 
 import java.util.UUID;
 

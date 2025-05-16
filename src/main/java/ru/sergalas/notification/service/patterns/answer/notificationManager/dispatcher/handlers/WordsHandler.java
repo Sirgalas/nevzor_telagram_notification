@@ -1,0 +1,10 @@
+package ru.sergalas.notification.service.patterns.answer.notificationManager.dispatcher.handlers;
+
+import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
+import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
+import ru.sergalas.notification.bot.Bot;
+
+public interface WordsHandler {
+    Boolean canHandle(Integer word);
+    BotApiMethod<?> handle(CallbackQuery query,String[] words, Bot bot);
+}

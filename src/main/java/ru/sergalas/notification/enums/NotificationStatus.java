@@ -1,4 +1,4 @@
-package ru.sergalas.notification.entity.enums;
+package ru.sergalas.notification.enums;
 
 public enum NotificationStatus {
     BUILDING,WAITING,FINISHED;

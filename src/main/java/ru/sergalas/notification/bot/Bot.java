@@ -1,7 +1,6 @@
 package ru.sergalas.notification.bot;
 
 import lombok.AccessLevel;
-import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramWebhookBot;
@@ -24,7 +23,7 @@ public final class Bot extends TelegramWebhookBot {
 
     @Override
     public BotApiMethod<?> onWebhookUpdateReceived(Update update) {
-        return dispatcher.dispatch(update);
+        return dispatcher.dispatch(update, this);
     }
 
     @Override
