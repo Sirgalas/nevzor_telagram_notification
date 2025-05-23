@@ -11,4 +11,6 @@ public interface NotificationService {
         Notification findById(String id);
 
         void changeStatus(Notification notification, NotificationStatus status);
+
+        void save(Notification notification);
 }

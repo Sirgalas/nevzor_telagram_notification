@@ -15,12 +15,12 @@ import ru.sergalas.notification.service.patterns.answer.notificationManager.stra
 @Service
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-public class TwoWordsHandler implements WordsHandler {
+public class FourWordsHandler implements WordsHandler {
     TwoStrategy twoStrategy;
 
     @Override
     public Boolean canHandle(Integer word) {
-        return word == 3;
+        return word == 4;
     }
     @Override
     public BotApiMethod<?> handle(CallbackQuery query, String[] words, Bot bot) throws TelegramApiException {

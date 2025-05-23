@@ -10,4 +10,7 @@ public interface UserService {
     User findByChatId(Long chatIt);
     User save(User user);
     void editActionAndCurrentNotification(Long chatId, UserActionEnum action, String id);
+    void editActionAndCurrentNotification(User user, UserActionEnum action);
+
+
 }

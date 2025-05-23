@@ -4,13 +4,22 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Component;
+import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
+import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
+import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
+import ru.sergalas.notification.bot.Bot;
 import ru.sergalas.notification.entity.notification.service.NotificationService;
 import static ru.sergalas.notification.enums.CallbackEnum.*;
+
+import ru.sergalas.notification.entity.user.service.UserService;
 import ru.sergalas.notification.service.factory.KeyboardFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+import static ru.sergalas.notification.enums.CallbackEnum.*;
 
 
 @Component
@@ -19,6 +28,7 @@ import java.util.List;
 public class ReplayMarkupHelper {
     NotificationService notificationService;
     KeyboardFactory keyboardFactory;
+    UserService userService;
 
     public InlineKeyboardMarkup editNotificationReplyMarkup(String id) {
         List<String> text = new ArrayList<>();
@@ -47,5 +57,35 @@ public class ReplayMarkupHelper {
             return "✅ %s".formatted(text);
         }
         return "❌ %s".formatted(text);
+    }
+
+    public BotApiMethod<?> mainMenu(Message message, Bot bot) {
+        return SendMessage.builder()
+            .chatId(message.getChatId())
+            .text("Настройте уведомление")
+            .replyMarkup(
+                editNotificationReplyMarkup(
+                    String.valueOf(
+                        userService.findByChatId(message.getChatId())
+                            .getCurrentNotification()
+                    )
+                )
+            )
+            .build();
+    }
+
+    public BotApiMethod<?> mainMenu(CallbackQuery query, Bot bot) {
+        return EditMessageText.builder()
+            .chatId(query.getMessage().getChatId())
+            .messageId(query.getMessage().getMessageId())
+            .text("###")
+            .replyMarkup(
+                keyboardFactory.createInlineKeyboardMarkup(
+                    List.of("Добавить уведомление"),
+                    List.of(1),
+                    List.of(NOTIFICATION_NEW.name())
+                )
+            )
+            .build();
     }
 }

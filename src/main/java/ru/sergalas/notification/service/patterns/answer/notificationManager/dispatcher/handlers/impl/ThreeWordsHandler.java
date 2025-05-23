@@ -13,7 +13,7 @@ public class ThreeWordsHandler implements WordsHandler {
 
     @Override
     public Boolean canHandle(Integer word) {
-        return word == 4;
+        return word == 3;
     }
 
     @Override

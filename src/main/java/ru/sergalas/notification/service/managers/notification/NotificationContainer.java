@@ -1,4 +1,4 @@
-package ru.sergalas.notification.service.managers;
+package ru.sergalas.notification.service.managers.notification;
 
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;

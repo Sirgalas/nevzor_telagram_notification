@@ -34,4 +34,9 @@ public class NotificationServiceImpl implements NotificationService {
         notificationRepository.save(notification);
     }
 
+    @Override
+    public void save(Notification notification) {
+        notificationRepository.save(notification);
+    }
+
 }

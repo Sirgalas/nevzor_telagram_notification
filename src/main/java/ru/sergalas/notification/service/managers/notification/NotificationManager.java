@@ -1,4 +1,4 @@
-package ru.sergalas.notification.service.managers;
+package ru.sergalas.notification.service.managers.notification;
 
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +11,7 @@ import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import ru.sergalas.notification.bot.Bot;
 import ru.sergalas.notification.service.factory.KeyboardFactory;
+import ru.sergalas.notification.service.helpers.ReplayMarkupHelper;
 import ru.sergalas.notification.service.patterns.answer.notificationManager.dispatcher.WordsDispatcher;
 
 import java.util.List;
@@ -24,6 +25,7 @@ public class NotificationManager {
 
     KeyboardFactory keyboardFactory;
     WordsDispatcher dispatcher;
+    ReplayMarkupHelper replayMarkupHelper;
 
     public BotApiMethod<?> mainMenu(Message message, Bot bot) {
         return null;

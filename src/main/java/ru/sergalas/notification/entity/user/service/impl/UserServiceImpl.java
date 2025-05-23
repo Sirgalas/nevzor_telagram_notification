@@ -54,6 +54,12 @@ public class UserServiceImpl implements UserService {
         save(user);
     }
 
+    @Override
+    public void editActionAndCurrentNotification(User user, UserActionEnum action) {
+        user.setAction(action);
+        save(user);
+    }
+
 
     @Override
     public User getUserByChatIdOrCreateNewUser(Long chatId) {
