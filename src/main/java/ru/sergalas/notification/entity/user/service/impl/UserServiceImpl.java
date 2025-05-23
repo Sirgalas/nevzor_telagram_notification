@@ -9,8 +9,10 @@ import ru.sergalas.notification.entity.user.enums.UserActionEnum;
 import ru.sergalas.notification.entity.user.repository.UserRepository;
 import ru.sergalas.notification.entity.user.service.UserService;
 
+import java.time.LocalDateTime;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -19,11 +21,18 @@ public class UserServiceImpl implements UserService {
 
     UserRepository userRepository;
 
-     Optional<User> checkUserByChatId(Long chatId) {
+    Optional<User> checkUserByChatId(Long chatId) {
         return userRepository.findByChatId(chatId);
     }
+
     User createUserFromChatId(Long chatIt) {
-        User user = User.builder().action(UserActionEnum.FREE).chatId(chatIt).build();
+        User user = User
+                .builder()
+                .action(UserActionEnum.FREE)
+                .firstName("test")
+                .chatId(chatIt)
+                .registerAt(LocalDateTime.now())
+                .build();
         return userRepository.save(user);
     }
     @Override
@@ -32,6 +41,18 @@ public class UserServiceImpl implements UserService {
        return user.orElseThrow(() -> new NoSuchElementException("user not found"));
     }
 
+    @Override
+    public User save(User user) {
+        return userRepository.save(user);
+    }
+
+    @Override
+    public void editActionAndCurrentNotification(Long chatId, UserActionEnum action, String id) {
+        User user = findByChatId(chatId);
+        user.setAction(action);
+        user.setCurrentNotification(UUID.fromString(id));
+        save(user);
+    }
 
 
     @Override

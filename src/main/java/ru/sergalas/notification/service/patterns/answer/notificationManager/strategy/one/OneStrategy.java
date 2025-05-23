@@ -1,9 +1,8 @@
-package ru.sergalas.notification.service.patterns.answer.notificationManager.one;
+package ru.sergalas.notification.service.patterns.answer.notificationManager.strategy.one;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.sergalas.notification.service.patterns.answer.notificationManager.one.handler.OneHandler;
+import ru.sergalas.notification.service.patterns.answer.notificationManager.strategy.one.handler.OneHandler;
 
 import java.util.List;
 import java.util.Map;

@@ -40,4 +40,7 @@ public class User {
 
     @OneToMany
     Set<Notification> notifications;
+
+    @Column(name = "current_notification_id")
+    UUID currentNotification;
 }

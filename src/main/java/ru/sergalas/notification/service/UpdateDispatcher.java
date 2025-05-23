@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import ru.sergalas.notification.bot.Bot;
 import ru.sergalas.notification.entity.user.entity.User;
 import ru.sergalas.notification.entity.user.service.UserService;
@@ -25,7 +26,7 @@ public class UpdateDispatcher {
     CallbackQueryHandler callbackQueryHandler;
     UserService userService;
 
-    public BotApiMethod<?> dispatch(Update update, Bot bot) {
+    public BotApiMethod<?> dispatch(Update update, Bot bot) throws TelegramApiException {
         if(update.hasCallbackQuery()) {
             userService.getUserByChatIdOrCreateNewUser(update.getCallbackQuery().getMessage().getChatId());
             return callbackQueryHandler.answer(update.getCallbackQuery(), bot);

@@ -8,6 +8,7 @@ import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
 import org.telegram.telegrambots.meta.api.objects.Message;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import ru.sergalas.notification.bot.Bot;
 import ru.sergalas.notification.service.factory.KeyboardFactory;
 import ru.sergalas.notification.service.patterns.answer.notificationManager.dispatcher.WordsDispatcher;
@@ -36,7 +37,7 @@ public class NotificationManager {
         return null;
     }
 
-    public BotApiMethod<?> answerQuery(CallbackQuery query, String[] words, Bot bot) {
+    public BotApiMethod<?> answerQuery(CallbackQuery query, String[] words, Bot bot) throws TelegramApiException {
         return  dispatcher.dispatch(query,words,bot);
     }
 

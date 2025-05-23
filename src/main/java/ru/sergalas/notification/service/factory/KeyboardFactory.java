@@ -20,7 +20,9 @@ public class KeyboardFactory {
         List<Integer> configuration,
         List<String> data
     ) {
-        if(text.size() != data.size() || text.size() != configuration.stream().reduce(0, Integer::sum)) {
+        int expectedSize = configuration.stream().reduce(0, Integer::sum);
+
+        if(text.size() != data.size() || text.size() != expectedSize) {
             log.warn("Wrong text: {}, configuration: {}, data: {}", text, configuration, data);
             return null;
         }

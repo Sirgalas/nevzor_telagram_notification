@@ -1,16 +1,16 @@
-package ru.sergalas.notification.service.patterns.answer.notificationManager.one.handler.impl;
+package ru.sergalas.notification.service.patterns.answer.notificationManager.strategy.one.handler.impl;
 
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
 import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
 import ru.sergalas.notification.bot.Bot;
 import ru.sergalas.notification.service.factory.KeyboardFactory;
-import ru.sergalas.notification.service.patterns.answer.notificationManager.one.handler.OneHandler;
+import ru.sergalas.notification.service.patterns.answer.notificationManager.strategy.one.handler.OneHandler;
 
 import java.util.List;
 
@@ -22,9 +22,8 @@ public class MainOneHandler implements OneHandler {
     KeyboardFactory keyboardFactory;
     @Override
     public BotApiMethod<?> handle(CallbackQuery query,  Bot bot) {
-        return EditMessageText.builder()
+        return SendMessage.builder()
             .chatId(query.getMessage().getChatId())
-            .messageId(query.getMessage().getMessageId())
             .text("***")
             .replyMarkup(keyboardFactory.createInlineKeyboardMarkup(
                     List.of("Добавить уведомление"),
