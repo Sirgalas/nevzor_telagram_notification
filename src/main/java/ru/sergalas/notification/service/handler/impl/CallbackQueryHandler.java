@@ -10,7 +10,7 @@ import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import ru.sergalas.notification.bot.Bot;
 import ru.sergalas.notification.service.handler.Handler;
-import ru.sergalas.notification.service.patterns.answer.callbackQuery.CallbackHandler;
+import ru.sergalas.notification.service.patterns.updateDispatcher.callbackQuery.CallbackHandler;
 
 @Service
 @RequiredArgsConstructor
@@ -25,7 +25,7 @@ public class CallbackQueryHandler implements Handler {
         String[] words = query.getData().split("_");
         String callback = words[0];
 
-        ru.sergalas.notification.service.patterns.answer.callbackQuery.handler.CallbackHandler handler = factory.getHandler(callback);
+        ru.sergalas.notification.service.patterns.updateDispatcher.callbackQuery.handler.CallbackHandler handler = factory.getHandler(callback);
         return handler.handle(query,words,bot);
     }
 }

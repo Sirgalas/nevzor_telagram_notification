@@ -42,7 +42,7 @@ public class UpdateDispatcher {
     }
 
 
-    public BotApiMethod<?> getBotApiMethodHandled(Message message, Bot bot) {
+    public BotApiMethod<?> getBotApiMethodHandled(Message message, Bot bot) throws TelegramApiException {
         if(message.getText().startsWith("/")) {
             return commandHandler.answer(message, bot);
         }

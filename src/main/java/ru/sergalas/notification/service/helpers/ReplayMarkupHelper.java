@@ -88,4 +88,19 @@ public class ReplayMarkupHelper {
             )
             .build();
     }
+
+    public BotApiMethod<?> backButton(String message, Integer messageId, Long chatId, String id) {
+        return EditMessageText.builder()
+                .text(message)
+                .messageId(messageId)
+                .chatId(chatId)
+                .replyMarkup(
+                        keyboardFactory.createInlineKeyboardMarkup(
+                                List.of("\uD83D\uDD19 Назад"),
+                                List.of(1),
+                                List.of(NOTIFICATION_BACK_ + id)
+                        )
+                )
+                .build();
+    }
 }
